@@ -4,9 +4,11 @@
     ViewData["Title"] = "ProVision Takehome";
 }
 
-<h1>Program Versions</h1>
+<h2>Program Versions</h2>
 
-        @foreach (var version in Model.ProgramVersions)
-        {
-            <div> @version.Key  --  @version.Value </div>
-        }
+<div>
+    @foreach (var version in Model.ProgramVersions)
+    {
+        <div><b>@version.Key</b> --- @version.Value</div>
+    }
+</div>
