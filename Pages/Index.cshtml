@@ -1,9 +1,12 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Provision_Takehome";
+    ViewData["Title"] = "ProVision Takehome";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hello!</h1>
-</div>
+<h1>Program Versions</h1>
+
+        @foreach (var version in Model.ProgramVersions)
+        {
+            <div> @version.Key  --  @version.Value </div>
+        }

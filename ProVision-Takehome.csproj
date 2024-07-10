@@ -7,4 +7,8 @@
     <RootNamespace>ProVision_Takehome</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Cliwrap" Version="3.6.6" />
+  </ItemGroup>
+
 </Project>
