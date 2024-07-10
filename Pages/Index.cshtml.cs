@@ -2,7 +2,6 @@
 using CliWrap;
 using CliWrap.Buffered;
 
-
 namespace ProVision_Takehome.Pages;
 public class IndexModel : PageModel
 {
@@ -28,8 +27,10 @@ public class IndexModel : PageModel
         {
             { "dotnet", "--version" },
             {"npm", "--version"},
-            {"python", "--version"}
-            
+            {"python", "--version"},
+            {"yarn", "--version"},
+            {"node", "--version"},
+            {"code", "--version"}
         };
 
         foreach (var program in cliCommands)
