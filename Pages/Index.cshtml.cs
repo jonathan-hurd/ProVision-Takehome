@@ -2,6 +2,7 @@
 using CliWrap;
 using CliWrap.Buffered;
 
+
 namespace ProVision_Takehome.Pages;
 public class IndexModel : PageModel
 {
@@ -20,7 +21,7 @@ public class IndexModel : PageModel
         ProgramVersions = await GetProgramVersions();
     }
 
-    static async Task<Dictionary<string, string>> GetProgramVersions()
+    async Task<Dictionary<string, string>> GetProgramVersions()
     {
         var programVersions = new Dictionary<string, string>();
         var cliCommands = new Dictionary<string, string>
@@ -33,11 +34,19 @@ public class IndexModel : PageModel
 
         foreach (var program in cliCommands)
         {
-            var result = await Cli.Wrap(program.Key)
-                .WithArguments(program.Value)
-                .ExecuteBufferedAsync();
+            try 
+            {
+                var result = await Cli.Wrap(program.Key)
+                    .WithArguments(program.Value)
+                    .ExecuteBufferedAsync();
 
-            programVersions[program.Key] = result.StandardOutput;
+                programVersions[program.Key] = result.StandardOutput;
+            }
+            catch (Exception ex) 
+            {
+                programVersions[program.Key] = "No version installed";
+                _logger.LogError(ex, "There was an error checking a program version");
+            }
         }
 
         return programVersions;
